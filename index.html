@@ -31,6 +31,7 @@
             background-color: #ffffff;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             overflow: hidden;
+            padding-bottom: 80px; 
         }
 
         header {
@@ -61,7 +62,6 @@
             margin-bottom: 20px;
         }
 
-        /* Tarjeta de Datos Personales y Objetivos */
         .info-card {
             background-color: #e8f4f8;
             border-radius: 8px;
@@ -75,15 +75,43 @@
             box-shadow: 0 6px 15px rgba(0,0,0,0.08);
         }
 
-        .info-card p {
-            margin: 8px 0;
+        .info-card p { margin: 8px 0; }
+        .info-card strong { color: var(--primary-color); }
+
+        .tabs-container {
+            display: flex;
+            background-color: #f1f1f1;
+            border-bottom: 2px solid var(--secondary-color);
         }
 
-        .info-card strong {
+        .tab-btn {
+            background-color: inherit;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 24px;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #555;
+            transition: 0.3s;
+            flex: 1;
+        }
+
+        .tab-btn:hover { background-color: #ddd; }
+        .tab-btn.active {
+            background-color: white;
             color: var(--primary-color);
+            border-bottom: 4px solid var(--accent-color);
         }
 
-        /* Timeline para los pasos del proceso */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.5s; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         .timeline {
             position: relative;
             margin: 40px 0;
@@ -142,50 +170,52 @@
             transition: background-color 0.3s;
         }
 
-        .step:hover::before {
-            background-color: var(--primary-color);
-        }
-
         .step-title {
             font-size: 1.2em;
             color: var(--secondary-color);
             margin-top: 0;
         }
 
-        /* Botón de animación */
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(211, 84, 0, 0.7); }
-            70% { box-shadow: 0 0 0 12px rgba(211, 84, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(211, 84, 0, 0); }
+        .btn-wrapper {
+            position: fixed;
+            bottom: 30px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            z-index: 1000;
+            pointer-events: none; 
         }
 
         .btn-reveal {
-            display: block;
-            width: 250px;
-            margin: 30px auto;
-            padding: 14px;
+            pointer-events: auto; 
+            display: inline-block;
+            width: 280px;
+            padding: 15px;
             background-color: var(--accent-color);
             color: white;
-            text-align: center;
             border: none;
             border-radius: 30px;
             font-size: 1.1em;
             font-weight: bold;
             cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
             transition: all 0.4s ease;
             outline: none;
         }
 
-        .btn-reveal.pulse-anim {
-            animation: pulse 2s infinite;
-        }
+        .btn-reveal.pulse-anim { animation: pulse 2s infinite; }
 
         .btn-reveal:hover {
             transform: scale(1.05);
             background-color: #ba4a00;
         }
 
-        /* Bloques matemáticos con animación al aparecer */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(211, 84, 0, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(211, 84, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(211, 84, 0, 0); }
+        }
+
         .math-block {
             overflow-x: auto;
             padding: 15px;
@@ -195,7 +225,7 @@
             border-left: 3px solid #ccc;
             opacity: 0;
             transform: scale(0.95);
-            transition: all 0.6s ease 0.3s; /* Retraso sutil tras aparecer el bloque de texto */
+            transition: all 0.6s ease 0.3s;
         }
 
         .step.visible .math-block, 
@@ -205,7 +235,6 @@
             border-left-color: var(--secondary-color);
         }
 
-        /* Sección de respuestas animada separada */
         .animated-section {
             display: none;
             opacity: 0;
@@ -226,6 +255,48 @@
             border-radius: 0 8px 8px 0;
         }
 
+        /* Nuevos estilos para la galería estática de imágenes */
+        .image-display-area {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease;
+        }
+        
+        .image-display-area:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+        }
+
+        .image-display-area h4 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.3em;
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .static-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            margin-top: 20px;
+            border: 1px solid #eee;
+        }
+
+        .img-caption {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
         footer {
             background-color: #2c3e50;
             color: white;
@@ -238,13 +309,11 @@
 <body>
 
     <div class="container">
-        <!-- TÍTULO Y SUBTÍTULO -->
         <header>
             <h1>Cálculo de la Adjunta de una Matriz</h1>
             <h2>Algoritmo paso a paso para matrices de tamaño nxn</h2>
         </header>
 
-        <!-- DATOS PERSONALES -->
         <section class="section" id="datos">
             <h3 class="section-title">Datos Personales</h3>
             <div class="info-card">
@@ -255,145 +324,182 @@
             </div>
         </section>
 
-        <!-- OBJETIVOS -->
-        <section class="section" id="objetivos">
-            <h3 class="section-title">Objetivos</h3>
-            <div class="info-card">
-                <ul>
-                    <li>Comprender la relación entre determinantes, cofactores y la matriz adjunta.</li>
-                    <li>Aplicar el algoritmo correcto para calcular la matriz de cofactores.</li>
-                    <li>Determinar la matriz adjunta mediante la transposición de la matriz de cofactores para su uso en el cálculo de la inversa de una matriz.</li>
+        <!-- PESTAÑAS -->
+        <div class="tabs-container">
+            <button class="tab-btn active" onclick="openTab(event, 'tab-algoritmo')">Algoritmo Paso a Paso</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-imagenes')">Procedimiento a Mano</button>
+        </div>
+
+        <!-- CONTENIDO: ALGORITMO -->
+        <div id="tab-algoritmo" class="tab-content active">
+            <section class="section">
+                <h3 class="section-title">Procedimiento Algorítmico</h3>
+                <p>El cálculo de la adjunta de una matriz \( A \) requiere la determinación previa de sus cofactores. Haz clic en el botón inferior para descubrir paso a paso cómo se calcula.</p>
+
+                <ul class="timeline" id="processTimeline">
+                    <li class="step">
+                        <h4 class="step-title">Paso 1: Identificar la matriz de origen</h4>
+                        <p>Se debe partir de una matriz cuadrada \( A \) de dimensiones \( n \times n \).</p>
+                        <div class="math-block">
+                            $$ A = \begin{pmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{n1} & a_{n2} & \cdots & a_{nn} \end{pmatrix} $$
+                        </div>
+                    </li>
+                    <li class="step">
+                        <h4 class="step-title">Paso 2: Calcular los determinantes menores</h4>
+                        <p>Para cada elemento \( a_{ij} \), se elimina la fila \( i \) y la columna \( j \) a la que pertenece. El determinante de la submatriz resultante se conoce como menor \( M_{ij} \).</p>
+                    </li>
+                    <li class="step">
+                        <h4 class="step-title">Paso 3: Obtener los cofactores</h4>
+                        <p>El cofactor \( A_{ij} \) se obtiene aplicando un signo alternante al menor calculado en el paso anterior. La fórmula es:</p>
+                        <div class="math-block">
+                            $$ A_{ij} = (-1)^{i+j} M_{ij} $$
+                        </div>
+                    </li>
+                    <li class="step">
+                        <h4 class="step-title">Paso 4: Formar la matriz de cofactores</h4>
+                        <p>Se construye una nueva matriz \( C \) (la matriz de cofactores) colocando cada cofactor \( A_{ij} \) en la posición correspondiente del elemento original.</p>
+                        <div class="math-block">
+                            $$ C = \begin{pmatrix} A_{11} & A_{12} & \cdots & A_{1n} \\ A_{21} & A_{22} & \cdots & A_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ A_{n1} & A_{n2} & \cdots & A_{nn} \end{pmatrix} $$
+                        </div>
+                    </li>
+                    <li class="step">
+                        <h4 class="step-title">Paso 5: Transponer la matriz de cofactores (Solución final)</h4>
+                        <p>La <strong>adjunta de A</strong> (escrita como adj A) es simplemente la matriz transpuesta de la matriz de cofactores \( C \). Es decir, se intercambian las filas por las columnas:</p>
+                        <div class="math-block">
+                            $$ adj A = C^T = \begin{pmatrix} A_{11} & A_{21} & \cdots & A_{n1} \\ A_{12} & A_{22} & \cdots & A_{n2} \\ \vdots & \vdots & \ddots & \vdots \\ A_{1n} & A_{2n} & \cdots & A_{nn} \end{pmatrix} $$
+                        </div>
+                    </li>
                 </ul>
-            </div>
-        </section>
+            </section>
 
-        <!-- CONTENIDO: PROCEDIMIENTO -->
-        <section class="section" id="contenido">
-            <h3 class="section-title">Procedimiento Algorítmico</h3>
-            <p>El cálculo de la adjunta de una matriz \( A \) requiere la determinación previa de sus cofactores. Haz clic en el botón para descubrir paso a paso cómo se calcula.</p>
-            
-            <button class="btn-reveal pulse-anim" id="nextStepBtn" onclick="revealNext()">Mostrar siguiente paso</button>
-
-            <ul class="timeline" id="processTimeline">
+            <section class="section animated-section" id="respuestas">
+                <h3 class="section-title">Ejemplo de Aplicación Numérica (De Tarea)</h3>
+                <p>Dada la matriz \( A \) asignada:</p>
+                <div class="math-block">
+                    $$ A = \begin{pmatrix} 2 & -5 & -1 \\ 5 & -1 & -1 \\ -5 & 1 & 3 \end{pmatrix} $$
+                </div>
                 
-                <li class="step">
-                    <h4 class="step-title">Paso 1: Identificar la matriz de origen</h4>
-                    <p>Se debe partir de una matriz cuadrada \( A \) de dimensiones \( n \times n \).</p>
+                <div class="answers-section">
+                    <h4>Apartado final con las respuestas</h4>
+                    <p>Aplicando el algoritmo descrito, se obtienen primero los cofactores:</p>
+                    <ul>
+                        <li>\( C_{11} = + [(-1)(3) - (-1)(1)] = -2 \)</li>
+                        <li>\( C_{12} = - [(5)(3) - (-1)(-5)] = -10 \)</li>
+                        <li>\( C_{13} = + [(5)(1) - (-1)(-5)] = 0 \)</li>
+                        <li>(Y así sucesivamente para formar la matriz \( C \))</li>
+                    </ul>
+                    <p><strong>Matriz de cofactores (\( C \)):</strong></p>
                     <div class="math-block">
-                        $$ A = \begin{pmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{n1} & a_{n2} & \cdots & a_{nn} \end{pmatrix} $$
+                        $$ C = \begin{pmatrix} -2 & -10 & 0 \\ 14 & 1 & 23 \\ 4 & -3 & 23 \end{pmatrix} $$
                     </div>
-                </li>
-
-                <li class="step">
-                    <h4 class="step-title">Paso 2: Calcular los determinantes menores</h4>
-                    <p>Para cada elemento \( a_{ij} \), se elimina la fila \( i \) y la columna \( j \) a la que pertenece. El determinante de la submatriz resultante se conoce como menor \( M_{ij} \).</p>
-                </li>
-
-                <li class="step">
-                    <h4 class="step-title">Paso 3: Obtener los cofactores</h4>
-                    <p>El cofactor \( A_{ij} \) se obtiene aplicando un signo alternante al menor calculado en el paso anterior. La fórmula es:</p>
+                    <p><strong>Respuesta Final (Adjunta de A):</strong> (Transpuesta de \( C \))</p>
                     <div class="math-block">
-                        $$ A_{ij} = (-1)^{i+j} M_{ij} $$
+                        $$ adj A = \begin{pmatrix} -2 & 14 & 4 \\ -10 & 1 & -3 \\ 0 & 23 & 23 \end{pmatrix} $$
                     </div>
-                </li>
-
-                <li class="step">
-                    <h4 class="step-title">Paso 4: Formar la matriz de cofactores</h4>
-                    <p>Se construye una nueva matriz \( B \) (la matriz de cofactores) colocando cada cofactor \( A_{ij} \) en la posición correspondiente del elemento original.</p>
-                    <div class="math-block">
-                        $$ B = \begin{pmatrix} A_{11} & A_{12} & \cdots & A_{1n} \\ A_{21} & A_{22} & \cdots & A_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ A_{n1} & A_{n2} & \cdots & A_{nn} \end{pmatrix} $$
-                    </div>
-                </li>
-
-                <li class="step">
-                    <h4 class="step-title">Paso 5: Transponer la matriz de cofactores (Solución final)</h4>
-                    <p>La <strong>adjunta de A</strong> (escrita como adj A) es simplemente la matriz transpuesta de la matriz de cofactores \( B \). Es decir, se intercambian las filas por las columnas:</p>
-                    <div class="math-block">
-                        $$ adj A = B^T = \begin{pmatrix} A_{11} & A_{21} & \cdots & A_{n1} \\ A_{12} & A_{22} & \cdots & A_{n2} \\ \vdots & \vdots & \ddots & \vdots \\ A_{1n} & A_{2n} & \cdots & A_{nn} \end{pmatrix} $$
-                    </div>
-                </li>
-
-            </ul>
-        </section>
-
-        <!-- APARTADO FINAL CON LAS RESPUESTAS (Ejemplo numérico) OCULTO AL INICIO -->
-        <section class="section animated-section" id="respuestas">
-            <h3 class="section-title">Ejemplo de Aplicación Numérica</h3>
-            <p>Dada la matriz \( A \):</p>
-            <div class="math-block">
-                $$ A = \begin{pmatrix} 2 & 4 & 3 \\ 0 & 1 & -1 \\ 3 & 5 & 7 \end{pmatrix} $$
-            </div>
-            
-            <div class="answers-section">
-                <h4>Apartado final con las respuestas</h4>
-                <p>Aplicando el algoritmo descrito, se obtienen primero los cofactores:</p>
-                <ul>
-                    <li>\( A_{11} = (1)(7) - (-1)(5) = 12 \)</li>
-                    <li>\( A_{12} = -[(0)(7) - (-1)(3)] = -3 \)</li>
-                    <li>\( A_{13} = -3 \)</li>
-                    <li>(Y así sucesivamente para formar la matriz \( B \))</li>
-                </ul>
-                <p><strong>Matriz de cofactores (\( B \)):</strong></p>
-                <div class="math-block">
-                    $$ B = \begin{pmatrix} 12 & -3 & -3 \\ -13 & 5 & 2 \\ -7 & 2 & 2 \end{pmatrix} $$
                 </div>
-                <p><strong>Respuesta Final (Adjunta de A):</strong> (Transpuesta de \( B \))</p>
-                <div class="math-block">
-                    $$ adj A = \begin{pmatrix} 12 & -13 & -7 \\ -3 & 5 & 2 \\ -3 & 2 & 2 \end{pmatrix} $$
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
-        <!-- CIERRE -->
+        <!-- CONTENIDO: IMÁGENES PROCEDIMIENTO ESTÁTICAS -->
+        <div id="tab-imagenes" class="tab-content">
+            <section class="section">
+                <h3 class="section-title">Solución de Ejercicios a Mano</h3>
+                <p>Desarrollo matemático del cálculo de cofactores y matriz adjunta resuelto de forma manual.</p>
+                
+                <!-- Asegúrate de tener una imagen llamada "matriz_3x3.jpg" en la misma carpeta -->
+                <div class="image-display-area">
+                    <h4>Procedimiento Matriz A (3x3)</h4>
+                    <img src="matriz_3x3.jpeg" class="static-img" alt="Procedimiento a mano Matriz 3x3">
+                    <p class="img-caption">Desarrollo de cofactores y matriz transpuesta para el ejercicio de 3x3.</p>
+                </div>
+
+                <!-- Asegúrate de tener una imagen llamada "matriz_4x4.jpg" en la misma carpeta -->
+                <div class="image-display-area">
+                    <h4>Procedimiento Matriz B (4x4)</h4>
+                    <img src="matriz_4x4.jpeg" class="static-img" alt="Procedimiento a mano Matriz 4x4">
+                    <p class="img-caption">Cálculo de los 16 menores y cofactores para el ejercicio de 4x4.</p>
+                </div>
+            </section>
+        </div>
+
         <footer>
             <p>La obtención de la matriz adjunta es un paso fundamental para el cálculo de la inversa de una matriz mediante el teorema \( A^{-1} = \frac{1}{\det A} \text{adj } A \).</p>
-            <p></p>
+            
         </footer>
     </div>
 
-    <!-- JAVASCRIPT PARA ANIMAR PROCEDIMIENTOS -->
+    <!-- Botón flotante -->
+    <div class="btn-wrapper" id="floatingBtnWrapper">
+        <button class="btn-reveal pulse-anim" id="nextStepBtn" onclick="revealNext()">Mostrar siguiente paso</button>
+    </div>
+
+    <!-- SCRIPTS -->
     <script>
+        function openTab(evt, tabName) {
+            let i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+
+            // Ocultar botón flotante si cambiamos a la pestaña de imágenes
+            const btnWrapper = document.getElementById("floatingBtnWrapper");
+            if (tabName !== 'tab-algoritmo') {
+                btnWrapper.style.display = 'none';
+            } else {
+                btnWrapper.style.display = 'block';
+            }
+        }
+
         const steps = document.querySelectorAll('.step');
         let currentStepIndex = 0;
         const btnReveal = document.getElementById('nextStepBtn');
         const exampleSection = document.getElementById('respuestas');
 
         function revealNext() {
-            // Fase 1: Revelar los pasos del algoritmo
             if (currentStepIndex < steps.length) {
                 steps[currentStepIndex].classList.add('visible');
+                steps[currentStepIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
                 currentStepIndex++;
                 
-                // Cuando se terminan los pasos, cambiar el botón para revelar el ejemplo
                 if (currentStepIndex === steps.length) {
                     btnReveal.innerText = "Ver Ejemplo Numérico";
-                    btnReveal.style.backgroundColor = "#2980b9"; // Cambia a azul
-                    btnReveal.style.animation = "none"; // Detiene la pulsación antigua
-                    setTimeout(() => { btnReveal.style.animation = "pulse 2s infinite"; }, 50); // Reinicia pulsación
+                    btnReveal.style.backgroundColor = "#2980b9"; 
+                    btnReveal.style.animation = "none";
+                    setTimeout(() => { btnReveal.style.animation = "pulse 2s infinite"; }, 50);
                 }
             } 
-            // Fase 2: Revelar la sección final del ejemplo
             else if (currentStepIndex === steps.length) {
-                exampleSection.style.display = 'block'; // Asegurar que exista en el DOM
+                exampleSection.style.display = 'block';
                 
-                // Pequeño timeout para permitir que la transición de CSS funcione
                 setTimeout(() => {
                     exampleSection.classList.add('visible');
+                    exampleSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     
-                    // Configuración final del botón
                     btnReveal.innerText = "¡Algoritmo Completado!";
-                    btnReveal.style.backgroundColor = "#27ae60"; // Cambia a verde
+                    btnReveal.style.backgroundColor = "#27ae60"; 
                     btnReveal.classList.remove('pulse-anim');
                     btnReveal.style.animation = "none";
                     btnReveal.style.cursor = "default";
                     btnReveal.disabled = true;
                     btnReveal.style.transform = "scale(1)";
+                    
+                    // Desaparecer sutilmente el botón luego de terminar
+                    setTimeout(() => {
+                        document.getElementById("floatingBtnWrapper").style.opacity = '0.3';
+                        document.getElementById("floatingBtnWrapper").style.transition = 'opacity 1s';
+                    }, 3000);
                 }, 50);
                 
-                currentStepIndex++; // Evitar múltiples clics
+                currentStepIndex++; 
             }
             
-            // Obliga a MathJax a re-renderizar las matemáticas recién mostradas
             if (window.MathJax) {
                 MathJax.typesetPromise();
             }
